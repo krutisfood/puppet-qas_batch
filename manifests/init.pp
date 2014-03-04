@@ -9,9 +9,7 @@ class qas_batch(
     default => $ensure,
   }
 
-  class { 'qas_batch::install':
-    ensure => $ensure_real
-  }
+  include qas_batch::install
   include qas_batch::config
   include qas_batch::auto_update
 }
