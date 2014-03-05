@@ -1,4 +1,5 @@
 # Parameters for cross platform support
 class qas_batch::params {
-  $ensure = 'present'
+  $ensure      = 'present'
+  $install_dir = '/opt/qas'
 }

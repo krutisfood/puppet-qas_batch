@@ -1,0 +1,103 @@
+;-------------------------------------------------------------------------------
+;
+; This file is used to hold the licence key strings which are required by
+; QAS products to access any data sets which you have purchased,
+; are evaluating, or which you use in a development environment.
+;
+; Licence keys appear one per line, starting on the first character of the line.
+; Blank lines are ignored and comments can be included by inserting a semi-colon
+; ";" as the first character of the line, as for this text.
+;
+; This file normally resides in the application directory alongside the
+; executable and/or library files originally installed with your QAS
+; product, and each application will normally possess its own, individual
+; licence file.
+;
+; Licence key strings are of the general form (without quotation marks):
+;
+; "A2B496CA-29019L-PRO-AUSBSP-EVAL-13APR2003-WIN"
+;
+; where each field (separated by the "-" character) provides information about
+; the licence.
+;
+; The fields are:
+;
+; "A2B496CA-29019L-PRO-AUSBSP-EVAL-13APR2003-WIN"
+;      ^                                  an encrypted authentification code
+;             ^                           your QAS customer code
+;                   ^                     the product the licence is issued for
+;                        ^                the data set the licence is issued for
+;                               ^         [optional] evaluation licence
+;                                     ^   [optional] expiry date of the licence
+;                                             ^      platform, e.g. Windows
+; (Note: the above example code is not valid.) 
+;
+; Some fields can be omitted, for example if no expiry date is shown then the
+; licence key will continue to allow access to the data indefinitely (see note
+; at the end of this text).  Similarly "EVAL" will not appear in a full licence.
+;
+; Keys are case-insensitive, and so can be entered in upper, lower or a mixture
+; of cases.
+;
+; Licence keys are provided on the dispatch note which accompanies newly-purchasd
+; data when it is first sent to you.  Sometimes it may be supplied via an email,
+; when you can simply cut and paste the keys during installation.
+;
+; Windows Data Installer Users
+; ----------------------------
+; If you use the Windows data installer (provided with all QAS data)
+; then you will be asked during the installation procedure to enter a licence
+; key for each data set/product combination for which you have purchased a
+; licence.
+;
+; For example, if you are using both Pro and Batch and have purchased GBR data
+; for both products then you will be asked to enter a separate GBR licence key
+; for each product, Pro and Batch.
+;
+; If for any reason you do not wish to enter the licence keys during the data
+; installation process, they can be entered at any time via the respective
+; configuration editor of each application.  In that case you should take care
+; that you enter the correct product licence key string, since licence keys
+; for different products (i.e. Pro, Web or Batch products) are mutually
+; incompatible.
+;
+; Non-Windows Data Installer Users
+; --------------------------------
+; If you are a UNIX user, or you do not install data using the Windows installer
+; utility and cannot use the configuration editor, then you will need to
+; manually edit this file to insert the licence keys supplied with your data.
+;
+; Each key should appear on its own line, starting on the first character of the
+; line.
+; 
+; Again you should take care to enter licence keys only for the product
+; which uses this licence file.
+;
+;
+; General
+; -------
+; The Getting Started guide contains further information on installing licence
+; keys.  If you experience any problems please refer to that document.
+;
+; If you are unable to resolve the problem please contact your support team.
+;
+; 
+;*******************************************************************************
+;*NB:Licence keys are used solely to assist in controlling and limiting        *
+;*   phsyical access to data in order to allow users to ensure that they are   *
+;*   properly licenced.  The presence of an enabling licence key does NOT      *
+;*   signify legal use of data in itself, and an appropriate and valid licence *
+;*   agreement with QAS must be active.                                        *
+;*   Use of any data outside the licence agreement is illegal, regardless of   *
+;*   the possession or use of any licence key string.                          *
+;*******************************************************************************
+;
+;-------------------------------------------------------------------------------
+;
+; You can insert your licence keys anywhere in this file, one per line,
+; starting on the first character of the line.
+;
+;-------------------------------------------------------------------------------
+<% @licences.each do |licence| -%>
+<%= licence %>
+<% end -%>
