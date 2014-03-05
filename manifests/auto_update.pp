@@ -13,6 +13,12 @@ class qas_batch::auto_update inherits qas_batch {
       content => template('qas_batch/updater/metadatawebapi.py.erb');
   }
 
+  if !defined(Package['pip']) {
+    pacakge { 'pip':
+      ensure => 'present'
+    }
+  }
+
   package { 'requests':
     ensure   => 'present',
     provider => 'pip'
