@@ -2,6 +2,11 @@
 class qas_batch::config inherits qas_batch {
   require qas_batch::install
   file {
+    "${install_dir}/bin/batwv":
+      mode => '0755';
+  }
+
+  file {
     "${install_dir}/data":
       ensure => 'directory';
   }

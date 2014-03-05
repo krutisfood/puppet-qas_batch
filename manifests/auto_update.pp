@@ -5,8 +5,8 @@ class qas_batch::auto_update() inherits qas_batch {
       ensure => 'directory';
 
     "${install_dir}/updater/metadatawebapi.py":
-      ensure  => 'present',
-      content => 'puppet:///modules/qas_batch/metadatawebapi.py';
+      ensure => 'present',
+      source => 'puppet:///modules/qas_batch/metadatawebapi.py';
   }
 
   # Trigger an update after the file is replaced
