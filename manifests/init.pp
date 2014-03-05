@@ -1,5 +1,5 @@
 # Class installing and configuring QAS Batch
-class qas_batch(
+class qas_batch (
   $ensure      = 'UNSET',
   $licenses    = 'UNSET'
 ) {
