@@ -14,7 +14,7 @@ class qas_batch::auto_update inherits qas_batch {
   }
 
   if !defined(Package['pip']) {
-    pacakge { 'pip':
+    package { 'pip':
       ensure => 'present'
     }
   }
