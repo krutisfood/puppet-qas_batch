@@ -1,10 +1,12 @@
 # Class installing and configuring QAS Batch
 class qas_batch (
-  $ensure      = 'UNSET',
-  $licenses    = 'UNSET'
+  $ensure               = 'UNSET',
+  $licenses             = 'UNSET',
+  $qas_updater_username = 'UNSET',
+  $qas_updater_password = 'UNSET'
 ) {
   include qas_batch::params
-  $install_dir = $::qas_batch::params::install_dir
+  $_install_dir = $::qas_batch::params::install_dir
 
   $_ensure = $ensure ? {
     'UNSET' => $::qas_batch::params::ensure,

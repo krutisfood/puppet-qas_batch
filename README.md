@@ -14,11 +14,15 @@ Released under the terms of Apache 2 License.
 
 * Install QAS Batch with default settings
 
-        class { 'qas-batch': }
+        class { 'qas-batch': 
+            $licenses             = ['my_lic1'],
+            $qas_updater_username = 'my username',
+            $qas_updater_password = 'not my real password'
+        }
 
 * Remove puppet package
 
         class { 'qas-batch':
-          ensure => 'absent'
+            ensure => 'absent'
         }
 

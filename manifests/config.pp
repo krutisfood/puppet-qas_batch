@@ -1,21 +1,22 @@
 # Configures qas batch
 class qas_batch::config inherits qas_batch {
   require qas_batch::install
+  $_install_dir = $qas_batch::install_dir
   file {
-    "${install_dir}/bin/batwv":
+    "${_install_dir}/bin/batwv":
       mode => '0755';
   }
 
   file {
-    "${install_dir}/data":
+    "${_install_dir}/data":
       ensure => 'directory';
   }
 
   file {
-    "${install_dir}/bin/qalicn.ini":
+    "${_install_dir}/bin/qalicn.ini":
       ensure  => 'present',
       content => template('qas_batch/qalicn.ini.erb'),
-      require => File["${install_dir}/data"];
+      require => File["${_install_dir}/data"];
   }
 
 #  file { 'country.ini':
