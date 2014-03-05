@@ -1,6 +1,6 @@
 # Manages auto-update script
 class qas_batch::auto_update inherits qas_batch {
-  $_install_dir           = $qas_batch::install_dir
+  $_install_dir           = $qas_batch::_install_dir
   $_update_dataset_command = "/usr/bin/env python ${_install_dir}/updater/metadatawebapi.py"
   $_updater_file           = "${_install_dir}/updater/metadatawebapi.py"
 

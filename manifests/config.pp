@@ -1,7 +1,7 @@
 # Configures qas batch
 class qas_batch::config inherits qas_batch {
   require qas_batch::install
-  $_install_dir = $qas_batch::install_dir
+  $_install_dir = $qas_batch::_install_dir
   file {
     "${_install_dir}/bin/batwv":
       mode => '0755';
