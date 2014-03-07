@@ -10,6 +10,6 @@ class qas_batch::params {
   }
   $python_requests_provider = $::osfamily ? {
     'Suse'  => 'zypper',
-    default => 'pip' 
+    default => 'pip'
   }
 }

@@ -16,7 +16,7 @@ class qas_batch::auto_update inherits qas_batch {
   }
 
   notify { "Name for requests lib ${qas_batch::python_requests_name}":
-    message => "${qas_batch::python_requests_provider}"
+    message => $qas_batch::python_requests_provider
   }
 
   package { $qas_batch::params::python_requests_name:
