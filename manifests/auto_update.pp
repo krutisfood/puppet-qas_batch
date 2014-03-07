@@ -27,7 +27,7 @@ class qas_batch::auto_update inherits qas_batch {
   # Trigger a data update to ensure initial data population
   exec { 'Download Initial QAS Batch Dataset':
     command => $_update_dataset_command,
-    require => [Package[${qas_batch::params::python_requests_provider}]],
+    require => [Package[$qas_batch::params::python_requests_provider]],
     creates => "${_install_dir}/data/dummy"
   }
 
