@@ -13,10 +13,21 @@ class qas_batch::config inherits qas_batch {
   }
 
   file {
+    "${_install_dir}/bin/qaworld.ini":
+      ensure  => $qas_batch::_ensure,
+      content => template($qas_batch::qaworld_template_file);
+  }
+
+  file {
     "${_install_dir}/bin/qalicn.ini":
-      ensure  => 'present',
-      content => template('qas_batch/qalicn.ini.erb'),
-      require => File["${_install_dir}/data"];
+      ensure  => $qas_batch::_ensure,
+      content => template('qas_batch/qalicn.ini.erb');
+  }
+
+  file {
+    "${_install_dir}/bin/qawserve.ini":
+      ensure  => $qas_batch::_ensure,
+      content => template('qas_batch/qawserve.ini.erb');
   }
 
 #  file { 'country.ini':

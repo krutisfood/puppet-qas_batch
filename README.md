@@ -15,9 +15,10 @@ Released under the terms of Apache 2 License.
 * Install QAS Batch with default settings
 
         class { 'qas-batch': 
-            $licenses             = ['my_lic1'],
-            $qas_updater_username = 'my username',
-            $qas_updater_password = 'not my real password'
+            $licenses             => ['my_lic1'],
+            $qas_updater_username => 'my username',
+            $qas_updater_password => 'not my real password',
+            $qaworld_file         => 'profile/qas/qaworld.ini.erb' 
         }
 
 * Remove puppet package
