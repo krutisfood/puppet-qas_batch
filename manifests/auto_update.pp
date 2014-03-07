@@ -1,5 +1,7 @@
 # Manages auto-update script
 class qas_batch::auto_update inherits qas_batch {
+  require qas_batch::install
+
   $_install_dir           = $qas_batch::_install_dir
   $_update_dataset_command = "/usr/bin/env python ${_install_dir}/updater/metadatawebapi.py"
   $_updater_file           = "${_install_dir}/updater/metadatawebapi.py"
@@ -13,15 +15,13 @@ class qas_batch::auto_update inherits qas_batch {
       content => template('qas_batch/updater/metadatawebapi.py.erb');
   }
 
-  if !defined(Package['pip']) {
-    package { 'pip':
-      ensure => 'present'
-    }
+  notify { "Name for requests lib ${qas_batch::python_requests_name}":
+    message => "${qas_batch::python_requests_provider}"
   }
 
-  package { 'requests':
+  package { $qas_batch::params::python_requests_name:
     ensure   => 'present',
-    provider => 'pip'
+    provider => $qas_batch::params::python_requests_provider
   }
 
   # Trigger a data update to ensure initial data population

@@ -5,7 +5,7 @@ class qas_batch (
   $qas_updater_username  = 'UNSET',
   $qas_updater_password  = 'UNSET',
   $qaworld_template_file = 'UNSET',
-  $data_dir              = 'UNSET',
+  $installed_data        = 'UNSET',
   $data_mappings         = 'UNSET'
 ) {
   include qas_batch::params
@@ -16,9 +16,9 @@ class qas_batch (
     default => $ensure,
   }
 
-  $_data_dir = $data_dir ? {
-    'UNSET' => $::qas_batch::params::data_dir,
-    default => $data_dir,
+  $_installed_data = $installed_data ? {
+    'UNSET' => $::qas_batch::params::installed_data,
+    default => $installed_data,
   }
 
   $_data_mappings = $data_mappings ? {
