@@ -35,7 +35,7 @@ class qas_batch::auto_update inherits qas_batch {
   if $qas_batch::_auto_update {
     exec { 'Download Initial QAS Batch Dataset':
       command => $_update_dataset_command,
-      creates => "${qas_batch::_dataset_dir}/${qas_batch::_installed_data}"
+      creates => "${qas_batch::_dataset_dir}/${qas_batch::_installed_data}",
       require => [Package[$qas_batch::params::python_requests_name]],
     }
   }
