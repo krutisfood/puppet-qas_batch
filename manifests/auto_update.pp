@@ -3,7 +3,7 @@ class qas_batch::auto_update inherits qas_batch {
   $_install_dir           = $qas_batch::_install_dir
   $_update_dataset_command = "cd ${qas_batch::_dataset_dir}; /usr/bin/env python ${_install_dir}/updater/metadatawebapi.py"
   $_updater_file           = "${_install_dir}/updater/metadatawebapi.py"
-  $cron = $qas_batch::_auto_update ? {
+  $auto_ensure = $qas_batch::_auto_update ? {
     /true|'true'/ => 'present',
     default       => 'absent'
   }
@@ -27,7 +27,7 @@ class qas_batch::auto_update inherits qas_batch {
   }
 
   package { $qas_batch::params::python_requests_name:
-    ensure   => 'present',
+    ensure   => $auto_ensure,
     provider => $qas_batch::params::python_requests_provider
   }
 
@@ -42,7 +42,7 @@ class qas_batch::auto_update inherits qas_batch {
 
   # Cron update
   cron {  'Update QAS Data':
-    ensure  => $cron,
+    ensure  => $auto_ensure,
     command => $_update_dataset_command,
     hour    => 15,
     minute  => 0;
