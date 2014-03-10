@@ -84,7 +84,7 @@ class qas_batch (
     default => $auto_update,
   }
 
-  include qas_batch::install ->
-  include qas_batch::auto_update ->
-  include qas_batch::config
+  class { 'qas_batch::install': } ->
+  class { 'qas_batch::auto_update': } ->
+  class { 'qas_batch::config': }
 }
