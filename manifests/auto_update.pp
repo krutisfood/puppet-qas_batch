@@ -22,10 +22,6 @@ class qas_batch::auto_update inherits qas_batch {
       content => template('qas_batch/updater/metadatawebapi.py.erb');
   }
 
-  notify { "Name for requests lib ${qas_batch::python_requests_name}":
-    message => $qas_batch::python_requests_provider
-  }
-
   package { $qas_batch::params::python_requests_name:
     ensure   => $auto_ensure,
     provider => $qas_batch::params::python_requests_provider
