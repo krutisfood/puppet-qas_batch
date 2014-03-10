@@ -4,6 +4,6 @@ SetupFileTypes=dts tpx zlx dap sdp
 
 LicenceWarning=30
 
-InstalledData=<%= @_installed_data -%>,<%= @_dataset_dir -%>
+InstalledData=<%= @_installed_data -%>,<%= scope.lookupvar('qas_batch::_dataset_link') %>
 
 DataMappings=<%= @_data_mappings -%>
