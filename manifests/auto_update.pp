@@ -1,10 +1,17 @@
 # Manages auto-update script
 class qas_batch::auto_update inherits qas_batch {
-  require qas_batch::install
-
   $_install_dir           = $qas_batch::_install_dir
-  $_update_dataset_command = "/usr/bin/env python ${_install_dir}/updater/metadatawebapi.py"
+  $_update_dataset_command = "cd ${qas_batch::_dataset_dir}; /usr/bin/env python ${_install_dir}/updater/metadatawebapi.py"
   $_updater_file           = "${_install_dir}/updater/metadatawebapi.py"
+  $cron = $qas_batch::_auto_update ? {
+    /true|'true'/ => 'present',
+    default       => 'absent'
+  }
+
+  file {
+    $qas_batch::_dataset_dir:
+      ensure => 'directory';
+  }
 
   file {
     "${_install_dir}/updater":
@@ -25,14 +32,17 @@ class qas_batch::auto_update inherits qas_batch {
   }
 
   # Trigger a data update to ensure initial data population
-  exec { 'Download Initial QAS Batch Dataset':
-    command => $_update_dataset_command,
-    require => [Package[$qas_batch::params::python_requests_name]],
-    creates => "${_install_dir}/data/dummy"
+  if $qas_batch::_auto_update {
+    exec { 'Download Initial QAS Batch Dataset':
+      command => $_update_dataset_command,
+      creates => "${qas_batch::_dataset_dir}/${qas_batch::_installed_data}"
+      require => [Package[$qas_batch::params::python_requests_name]],
+    }
   }
 
   # Cron update
   cron {  'Update QAS Data':
+    ensure  => $cron,
     command => $_update_dataset_command,
     hour    => 15,
     minute  => 0;

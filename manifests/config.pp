@@ -1,15 +1,9 @@
 # Configures qas batch
 class qas_batch::config inherits qas_batch {
-  require qas_batch::install
   $_install_dir = $qas_batch::_install_dir
   file {
     "${_install_dir}/bin/batwv":
       mode => '0755';
-  }
-
-  file {
-    "${_install_dir}/data":
-      ensure => 'directory';
   }
 
   file {
@@ -30,8 +24,10 @@ class qas_batch::config inherits qas_batch {
       content => template('qas_batch/qawserve.ini.erb');
   }
 
-#  file { 'country.ini':
-#    ensure  => 'present',
-#    content => template('')
-#  }
+  $latest_dataset_command = "ls -t -d -1 ${qas_batch::_dataset_dir}/${qas_batch::_installed_data}/*|/usr/bin/env head -1"
+  exec {
+    'Set latest qas dataset link':
+      command => "/usr/bin/env ln -n -f -s `${latest_dataset_command}` ${qas_batch::_dataset_link}",
+      onlyif  => "/usr/bin/env test `${latest_dataset_command}` = `readlink ${qas_batch::_dataset_link}`; echo $?",
+  }
 }

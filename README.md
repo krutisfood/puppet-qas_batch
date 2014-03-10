@@ -16,11 +16,20 @@ Released under the terms of Apache 2 License.
 
         class { 'qas-batch': 
             $licenses             => ['my_lic1'],
+            $qas_dataset_dir      => '/opt/qas/data',
+            $qaworld_file         => 'profile/qas/qaworld.ini.erb' 
+        }
+
+* Install QAS with auto updater enabled
+_WARNING:_ The auto updater will download datasets though does not point the configuration at it.
+
+        class { 'qas-batch': 
+            $licenses             => ['my_lic1'],
             $qas_updater_username => 'my username',
             $qas_updater_password => 'not my real password',
             $qaworld_file         => 'profile/qas/qaworld.ini.erb' 
         }
-
+ 
 * Remove puppet package
 
         class { 'qas-batch':
