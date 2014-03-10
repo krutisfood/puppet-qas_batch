@@ -2,8 +2,8 @@
 class qas_batch::config inherits qas_batch {
   $_install_dir = $qas_batch::_install_dir
   file {
-    "${_install_dir}/bin/batwv":
-      mode => '0755';
+    ["${_install_dir}/bin/batwv","${_install_dir}/bin/batwv.sh"]:
+      mode => '0555';
   }
 
   file {
