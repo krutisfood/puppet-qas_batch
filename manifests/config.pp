@@ -28,6 +28,6 @@ class qas_batch::config inherits qas_batch {
   exec {
     'Set latest qas dataset link':
       command => "/usr/bin/env ln -n -f -s `${latest_dataset_command}` ${qas_batch::_dataset_link}",
-      unless  => "/usr/bin/env test `${latest_dataset_command}` = `readlink ${qas_batch::_dataset_link}`; echo $?",
+      unless  => "/usr/bin/env test `${latest_dataset_command}` = `readlink ${qas_batch::_dataset_link}`",
   }
 }
